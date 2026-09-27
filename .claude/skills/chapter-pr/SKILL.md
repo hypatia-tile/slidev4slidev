@@ -33,7 +33,9 @@ preview deployment before production.
 7. Check the preview serves both `/` and a deep link such as `/2` with
    `curl -s -o /dev/null -w '%{http_code}'` (run it via `nix develop --command curl`
    if `curl` is not on PATH; expect 200 for both; the deep
-   link depends on the rewrite in `vercel.json`). A 401 means Vercel
-   Deployment Protection is on — report that instead of treating it as a failure.
+   link depends on the rewrite in `vercel.json`). Previews sit behind Vercel
+   Deployment Protection by default: a 302 to `vercel.com/sso-api` (or a 401)
+   means that, not a failure — report it and ask the owner to check the preview
+   in a logged-in browser.
 8. Report the PR URL and the preview URL to the owner. Do not merge; merging
    is the owner's call.
