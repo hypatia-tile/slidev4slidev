@@ -38,21 +38,23 @@ so `pnpm create` gives pnpm commands and a pnpm-specific README.
 -->
 
 ---
+class: text-sm
+---
 
 # What the template generates
 
 | File | Purpose |
 |---|---|
-| `slides.md` | The deck: headmatter + slides separated by `---` |
-| `package.json` | `dev` / `build` / `export` scripts, `@slidev/cli`, themes, `vue` |
-| `pnpm-workspace.yaml` | pnpm settings: `shamefullyHoist`, build-script allowlist for `playwright-chromium` |
-| `pages/imported-slides.md` | Example of splitting slides into files (chapter 03) |
-| `components/Counter.vue` | Vue components, auto-registered for use in slides |
-| `snippets/external.ts` | Code imported into slides with `<<< @/snippets/...` |
-| `vercel.json`, `netlify.toml` | Ready-made hosting config (chapter 05) |
-| `_gitignore` → `.gitignore` | Ignores `node_modules`, `dist`, … |
+| `slides.md` | The deck: headmatter + slides split by `---` |
+| `package.json` | `dev` / `build` / `export` scripts and dependencies |
+| `pnpm-workspace.yaml` | pnpm settings, e.g. allow `playwright-chromium` build scripts |
+| `pages/imported-slides.md` | Splitting slides into files (chapter 03) |
+| `components/Counter.vue` | Vue components, auto-registered in slides |
+| `snippets/external.ts` | Code imported with `<<< @/snippets/...` |
+| `vercel.json`, `netlify.toml` | Hosting config (chapter 05) |
+| `_gitignore` | Renamed to `.gitignore` |
 
-This repository keeps only what it uses: `slides.md`, `pages/`, `package.json`, `vercel.json`.
+This repository keeps only `slides.md`, `pages/`, `package.json` and `vercel.json`.
 
 ---
 
