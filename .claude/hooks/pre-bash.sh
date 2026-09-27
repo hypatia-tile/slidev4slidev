@@ -6,7 +6,10 @@ set -uo pipefail
 cmd="$(jq -r '.tool_input.command // empty')"
 root="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel)}"
 
-if grep -Eq '(^|[^[:alnum:]_./-])(npm|npx|yarn)([[:space:]]|$)' <<<"$cmd"; then
+# Only match npm/npx/yarn in command position (line start, after ; & | ( $( or a
+# wrapper such as `nix develop --command`), so file contents written through a
+# heredoc may still mention them.
+if grep -Eq '(^|[;&|(]|\$\()[[:space:]]*((sudo|exec|env|command|time|xargs)[[:space:]]+|nix[[:space:]]+develop[[:space:]]+(-c|--command)[[:space:]]+)*(npm|npx|yarn)([[:space:]]|$)' <<<"$cmd"; then
   echo "This repository uses pnpm. Use pnpm / pnpm dlx instead of npm, npx or yarn." >&2
   exit 2
 fi
