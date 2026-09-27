@@ -13,6 +13,15 @@ fi
 
 mode="${1:-quick}"
 
+# Print `src:` values from a slide file, skipping fenced code blocks and `#range` suffixes.
+src_refs() {
+  awk '
+    fence == "" && match($0, /^`{3,}/) { fence = substr($0, 1, RLENGTH); next }
+    fence != "" && $0 ~ "^" fence "[[:space:]]*$" { fence = ""; next }
+    fence == "" && sub(/^src:[[:space:]]*/, "") { sub(/#.*$/, ""); print }
+  ' "$1"
+}
+
 check_src_refs() {
   local missing=0 ref
   for file in slides.md pages/*.md; do
@@ -22,7 +31,7 @@ check_src_refs() {
         echo "check: $file references missing file: $ref" >&2
         missing=1
       fi
-    done < <(sed -n 's/^src:[[:space:]]*//p' "$file")
+    done < <(src_refs "$file")
   done
   return "$missing"
 }
