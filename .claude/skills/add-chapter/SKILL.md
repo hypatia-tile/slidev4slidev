@@ -40,7 +40,8 @@ with `src:`. `slides.md` itself holds only the cover and the Contents slide.
    ---
    ```
 
-4. Add `NN. <Title>` to the list on the Contents slide in `slides.md`.
+4. Add `- NN — <Title>` to the list on the Contents slide in `slides.md`
+   (a bullet, not `NN.`, which Markdown would renumber as an ordered list).
 5. Run `scripts/check.sh quick` to confirm every `src:` resolves.
 
 Do not commit here; committing and opening the PR is `chapter-pr`.
