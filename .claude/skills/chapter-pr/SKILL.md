@@ -30,6 +30,12 @@ preview deployment before production.
 
    If that is empty, fall back to the Vercel bot comment on the PR
    (`gh pr view --comments`).
+
+   That URL belongs to one deployment and goes stale on the next push. Also
+   report the branch alias, which always serves the latest push of the branch:
+   `https://slidev4slidev-git-<branch with / replaced by ->-hypatia2.vercel.app`
+   (e.g. `slidev4slidev-git-chapter-dev-env-nix-hypatia2.vercel.app`); confirm it
+   against the Vercel bot comment. Run this step after the last push, never before.
 7. Check the preview serves both `/` and a deep link such as `/2` with
    `curl -s -o /dev/null -w '%{http_code}'` (run it via `nix develop --command curl`
    if `curl` is not on PATH; expect 200 for both; the deep
@@ -37,5 +43,5 @@ preview deployment before production.
    Deployment Protection by default: a 302 to `vercel.com/sso-api` (or a 401)
    means that, not a failure — report it and ask the owner to check the preview
    in a logged-in browser.
-8. Report the PR URL and the preview URL to the owner. Do not merge; merging
+8. Report the PR URL, the branch alias and the per-deployment preview URL to the owner. Do not merge; merging
    is the owner's call.
