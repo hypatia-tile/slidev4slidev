@@ -6,7 +6,7 @@ info: |
   This deck is itself built and deployed the way it describes.
 class: text-center
 transition: slide-left
-mdc: true
+comark: true
 ---
 
 # Slidev for Slidev
@@ -24,9 +24,24 @@ Writing slides with Slidev and publishing them on Vercel
 <div class="text-left">
 
 - 00 — Development Environment with Nix
+- 01 — Creating a Slidev Project
+- 02 — Slidev Basics
+- 03 — Structuring a Deck
 
 </div>
 
 ---
 src: ./pages/00-dev-env-nix.md
+---
+
+---
+src: ./pages/01-slidev-create.md
+---
+
+---
+src: ./pages/02-slidev-basics.md
+---
+
+---
+src: ./pages/03-slidev-structure.md
 ---
