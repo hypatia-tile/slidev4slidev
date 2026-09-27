@@ -27,6 +27,9 @@ Writing slides with Slidev and publishing them on Vercel
 - 01 — Creating a Slidev Project
 - 02 — Slidev Basics
 - 03 — Structuring a Deck
+- 04 — Building for Hosting
+- 05 — Deploying with the Vercel Git Integration
+- 06 — Other Ways to Deploy
 
 </div>
 
@@ -44,4 +47,16 @@ src: ./pages/02-slidev-basics.md
 
 ---
 src: ./pages/03-slidev-structure.md
+---
+
+---
+src: ./pages/04-build.md
+---
+
+---
+src: ./pages/05-deploy-git-integration.md
+---
+
+---
+src: ./pages/06-roadmap.md
 ---
