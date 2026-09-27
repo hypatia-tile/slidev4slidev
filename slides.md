@@ -21,4 +21,12 @@ Writing slides with Slidev and publishing them on Vercel
 
 # Contents
 
-This deck is under construction. Chapters will be added one pull request at a time.
+<div class="text-left">
+
+- 00 — Development Environment with Nix
+
+</div>
+
+---
+src: ./pages/00-dev-env-nix.md
+---
