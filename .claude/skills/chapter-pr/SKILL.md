@@ -19,12 +19,26 @@ preview deployment before production.
    (includes `pnpm build`); fix any failure rather than bypassing it.
 4. `gh pr create` with an English title and body: which chapters changed, and
    anything the reviewer should look at in the preview.
-5. Wait for the Vercel check: `gh pr checks --watch`.
-6. Find the preview URL from the deployment status:
+5. Wait for the Vercel deployment of `HEAD`. Right after a push,
+   `gh pr checks --watch` can still report the previous commit's deployment
+   and return at once, so poll the deployment for the exact SHA instead:
 
    ```sh
    sha=$(git rev-parse HEAD)
-   id=$(gh api "repos/{owner}/{repo}/deployments?sha=$sha" --jq '.[0].id')
+   for i in $(seq 1 30); do
+     id=$(gh api "repos/{owner}/{repo}/deployments?sha=$sha" --jq '.[0].id // empty')
+     state=$([ -n "$id" ] && gh api "repos/{owner}/{repo}/deployments/$id/statuses" --jq '.[0].state // empty')
+     case "$state" in success|failure|error) break ;; esac
+     /bin/sleep 10
+   done
+   echo "$state"
+   ```
+
+   On `failure` or `error`, read the build log from the Vercel link in
+   `gh pr checks` and fix it before going on.
+6. Find the preview URL from the same deployment:
+
+   ```sh
    gh api "repos/{owner}/{repo}/deployments/$id/statuses" --jq '.[0].environment_url'
    ```
 
