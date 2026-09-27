@@ -22,6 +22,7 @@
             pkgs.nodejs_24
             pkgs.pnpm
             pkgs.lefthook
+            pkgs.curl
           ];
           shellHook = ''
             if [ -f lefthook.yml ]; then lefthook install >/dev/null; fi

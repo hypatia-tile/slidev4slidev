@@ -31,7 +31,8 @@ preview deployment before production.
    If that is empty, fall back to the Vercel bot comment on the PR
    (`gh pr view --comments`).
 7. Check the preview serves both `/` and a deep link such as `/2` with
-   `curl -s -o /dev/null -w '%{http_code}'` (expect 200 for both; the deep
+   `curl -s -o /dev/null -w '%{http_code}'` (run it via `nix develop --command curl`
+   if `curl` is not on PATH; expect 200 for both; the deep
    link depends on the rewrite in `vercel.json`). A 401 means Vercel
    Deployment Protection is on — report that instead of treating it as a failure.
 8. Report the PR URL and the preview URL to the owner. Do not merge; merging

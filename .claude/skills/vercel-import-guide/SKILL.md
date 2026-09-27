@@ -34,6 +34,7 @@ for path in / /2; do
 done
 ```
 
+If `curl` is not on PATH, run the loop inside `nix develop --command bash -c ...`.
 Both must return 200; a 404 on `/2` means the rewrite in `vercel.json` is not
 applied. Also check the build log in the dashboard used pnpm 12 (the version
 in `packageManager`); if Vercel picked a different pnpm, set the environment
