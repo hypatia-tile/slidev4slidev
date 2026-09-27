@@ -1,0 +1,10 @@
+# Git hooks. The same checks run from Claude Code hooks (.claude/settings.json).
+pre-commit:
+  jobs:
+    - name: check-quick
+      run: scripts/check.sh quick
+
+pre-push:
+  jobs:
+    - name: check-full
+      run: scripts/check.sh full
